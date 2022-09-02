@@ -20,9 +20,10 @@ class MainActivity : AppCompatActivity() {
         val mon = calender.get(Calendar.MONTH)
 
         btnPre.setOnClickListener{
-            if (mon == 0)
-                tvMonthNum
             tvMonthNum.setText(mon-1)
+        }
+        btnNext.setOnClickListener {
+            tvMonthNum.setText(mon+1)
         }
 
 
