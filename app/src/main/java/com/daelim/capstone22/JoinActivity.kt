@@ -49,7 +49,7 @@ class JoinActivity : AppCompatActivity() {
                 // 가입 완료 토스트 띄우기
                 Toast.makeText(this,"가입 완료",Toast.LENGTH_SHORT).show()
 
-                // 쉐어드에 저장
+                // 쉐어드에 저장-
                 val SharedPreferences = getSharedPreferences("userInformation",Context.MODE_PRIVATE)
                 val editor = SharedPreferences.edit()
                 editor.putString("name",name)
