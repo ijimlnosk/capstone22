@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.content.ContextCompat
+import kotlinx.android.synthetic.main.activity_main.*
 import java.time.LocalDate
 import java.util.*
 
@@ -27,6 +30,21 @@ class MainActivity : AppCompatActivity() {
         }
         btnNext.setOnClickListener {
             tvMonthNum.setText(mon+1)
+        }
+
+
+        val items = mutableListOf<ListViewItem>()
+
+        items.add(ListViewItem("1,000","1,500"))
+        items.add(ListViewItem("1,000","1,500"))
+        items.add(ListViewItem("1,000","1,500"))
+
+        val adapter = ListViewAdapter(items)
+        listview.adapter = adapter
+
+        listview.setOnItemClickListener { parent, view, position, l ->
+            val item = parent.getItemAtPosition(position) as ListViewItem
+            Toast.makeText(this, item.title, Toast.LENGTH_SHORT).show()
         }
 
 

@@ -20,10 +20,8 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        showLodingDialog()
-
-       /* val intent = Intent(this,LodingActivity::class.java)
-        startActivity(intent)*/
+        val intent = Intent(this,LodingActivity::class.java)
+        startActivity(intent)
 
         btn_userjoin.setOnClickListener {
             val intent = Intent(this,JoinActivity::class.java)
@@ -47,14 +45,6 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
             Toast.makeText(this,"로그인 완료",Toast.LENGTH_SHORT).show()
             finish()
-        }
-    }
-    private fun showLodingDialog(){
-        val dialog = LodingDialog(this)
-        CoroutineScope(Main).launch {
-            dialog.show()
-            delay(2000)
-            dialog.dismiss()
         }
     }
 }

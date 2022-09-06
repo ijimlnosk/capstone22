@@ -75,18 +75,20 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="500dp">
-        <ListView
-            android:id="@+id/listview"
+        <fragment
+            android:id="@+id/main_fragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
+            android:layout_height="match_parent"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/list_nav_graph">
+        </fragment>
     </FrameLayout>
 
-    <LinearLayout
+    <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </LinearLayout>
+        android:layout_height="match_parent"
+        app:menu="@menu/bottom_nav_mennu">
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 
 </LinearLayout>
