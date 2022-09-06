@@ -39,7 +39,7 @@ class LoginActivity : AppCompatActivity() {
 
         Log.d(TAG, saveName)
 
-        if(tvInputName.equals("")){
+        if(tvInputName == ""){
 
         }
         else{
