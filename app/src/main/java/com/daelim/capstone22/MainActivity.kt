@@ -9,6 +9,9 @@ import java.time.LocalDate
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
+
+    val TAG : String = "MainActivity"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
