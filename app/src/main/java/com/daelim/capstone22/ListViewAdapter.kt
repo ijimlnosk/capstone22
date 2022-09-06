@@ -20,6 +20,6 @@ class ListViewAdapter(private val items: MutableList<ListViewItem>): BaseAdapter
         convertView.custom_text1.text
         convertView.text_sub_title.text = item.subTitle
 
-        return convertView
+        return convertView //
     }
 }
