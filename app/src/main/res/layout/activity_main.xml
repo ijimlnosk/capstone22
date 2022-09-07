@@ -72,18 +72,35 @@
         android:background="#cebe8b">
     </LinearLayout>
 
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="500dp">
-        <fragment
-            android:id="@+id/main_fragment"
+        android:layout_height="match_parent">
+         <FrameLayout
+             android:id="@+id/fl_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:name="androidx.navigation.fragment.NavHostFragment"
-            app:defaultNavHost="true"
-            app:navGraph="@navigation/list_nav_graph">
-        </fragment>
-    </FrameLayout>
+            android:layout_height="match_parent">
+             <com.google.material.navigationBarView.NavigationBarView
+                 android:layout_width="0dp"
+                 android:layout_height="?attr/actionBarSize"
+                 android:id="@+id/bnv_main"
+                 android:background="#FFFFFF"
+                 app:menu="@menu/bottom_nav_menu"
+                 app:layout_constraintBottom_toBottomOf="parent"
+                 app:layout_constraintLeft_toLeftOf="parent"
+                 app:layout_constraintRight_toRightOf="parent"
+                 >
+             </com.google.material.navigationBarView.NavigationBarView>
+            <!--<fragment
+                android:id="@+id/main_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                app:defaultNavHost="true"
+                app:navGraph="@navigation/list_nav_graph">
+            </fragment>-->
+        </FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
