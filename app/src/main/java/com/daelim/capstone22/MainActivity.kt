@@ -7,6 +7,9 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.navigation.ui.NavigationUI.setupWithNavController
+import com.daelim.capstone22.fragments.ListFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import java.time.LocalDate
 import java.util.*
@@ -40,13 +43,14 @@ class MainActivity : AppCompatActivity() {
         items.add(ListViewItem("1,000","1,500"))
 
         val adapter = ListViewAdapter(items)
-        listview.adapter = adapter
+       /* listview.adapter = adapter
 
         listview.setOnItemClickListener { parent, view, position, l ->
             val item = parent.getItemAtPosition(position) as ListViewItem
             Toast.makeText(this, item.title, Toast.LENGTH_SHORT).show()
-        }
+        }*/
 
+        BottomNavigationView.setupWithNavController(ListFragment.findNavController())
 
 
     }
