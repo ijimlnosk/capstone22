@@ -15,6 +15,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_list.*
 import java.time.LocalDate
 import java.util.*
 
@@ -42,17 +43,17 @@ class MainActivity : AppCompatActivity() {
 
         val items = mutableListOf<ListViewItem>()
 
-        items.add(ListViewItem("1,000","1,500"))
-        items.add(ListViewItem("1,000","1,500"))
-        items.add(ListViewItem("1,000","1,500"))
+        items.add(ListViewItem("자판기","커피","-1,500"))
+        items.add(ListViewItem("편의점","담배","-4,500"))
+        items.add(ListViewItem("편의점","음료","-2,000"))
 
         val adapter = ListViewAdapter(items)
-       /* listview.adapter = adapter
+        listView.adapter = adapter
 
-        listview.setOnItemClickListener { parent, view, position, l ->
+        listView.setOnItemClickListener { parent, view, position, l ->
             val item = parent.getItemAtPosition(position) as ListViewItem
             Toast.makeText(this, item.title, Toast.LENGTH_SHORT).show()
-        }*/
+        }
         var bnv_main = findViewById<FrameLayout>(R.id.bnv_main) as BottomNavigationView
 
         bnv_main.run {

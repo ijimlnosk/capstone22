@@ -26,6 +26,7 @@ class ListViewAdapter(private val items: MutableList<ListViewItem>): BaseAdapter
 
         convertView!!.findViewById<TextView>(R.id.custom_text1).text = item.title
         convertView!!.findViewById<TextView>(R.id.custom_text2).text = item.subTitle
+        convertView!!.findViewById<TextView>(R.id.money_text1).text = item.moneyTitle
 
 
         return convertView //
