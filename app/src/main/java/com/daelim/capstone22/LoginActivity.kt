@@ -20,11 +20,12 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        val intent = Intent(this,LodingActivity::class.java)
-        startActivity(intent)
-
         btn_userjoin.setOnClickListener {
             val intent = Intent(this,JoinActivity::class.java)
+            startActivity(intent)
+        }
+        btn_userLogin.setOnClickListener {
+            val intent = Intent(this,MainActivity::class.java)
             startActivity(intent)
         }
 
@@ -39,6 +40,9 @@ class LoginActivity : AppCompatActivity() {
 
         if(tvInputName == ""){
 
+            val intent = Intent(this,JoinActivity::class.java)
+            startActivity(intent)
+
         }
         else{
             val intent = Intent(this,MainActivity::class.java)
@@ -46,5 +50,6 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this,"로그인 완료",Toast.LENGTH_SHORT).show()
             finish()
         }
+
     }
 }

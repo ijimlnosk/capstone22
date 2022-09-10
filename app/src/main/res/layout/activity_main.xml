@@ -87,6 +87,11 @@
                 app:defaultNavHost="true"
                 app:navGraph="@navigation/list_nav_graph">
             </fragment>-->
+
+<!--             <ListView-->
+<!--                 android:id="@+id/listView"-->
+<!--                 android:layout_width="match_parent"-->
+<!--                 android:layout_height="match_parent"/>-->
         </FrameLayout>
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:layout_width="0dp"
@@ -102,11 +107,11 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
+   <!-- <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:menu="@menu/bottom_nav_menu">
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+    </com.google.android.material.bottomnavigation.BottomNavigationView>-->
 
 
 </LinearLayout>
