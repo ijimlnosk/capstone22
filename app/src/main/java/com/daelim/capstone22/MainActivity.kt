@@ -2,17 +2,20 @@ package com.daelim.capstone22
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
 import android.widget.ImageButton
+import android.widget.ListView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.view.isInvisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.daelim.capstone22.databinding.ActivityMainBinding
-import com.daelim.capstone22.fragments.CalendarFragment
-import com.daelim.capstone22.fragments.ListFragment
+import com.daelim.capstone22.fragment.CalenderFragment
+import com.daelim.capstone22.fragment.ListFragment
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_list.*
 import java.time.LocalDate
 import java.util.*
 
@@ -25,6 +28,41 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
 
+    var flag=0
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding=ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+        setFragment(ListFragment())
+
+        binding.btnList.setOnClickListener {
+            setListFragment()
+        }
+        binding.btnCal.setOnClickListener {
+            setCalFragment()
+        }
+
+    }
+
+
+    private fun setListFragment(){
+        val transaction = supportFragmentManager.beginTransaction().add(R.id.frameLayout,ListFragment())
+        transaction.commit()
+    }
+    private fun setCalFragment(){
+        val transaction = supportFragmentManager.beginTransaction().add(R.id.frameLayout,CalenderFragment())
+        transaction.commit()
+    }
+    fun setFragment(f: Fragment){
+        val ft = supportFragmentManager.beginTransaction()
+        ft.replace(R.id.frameLayout,f)
+        ft.commit()
+    }
+
+    /*lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -36,14 +74,14 @@ class MainActivity : AppCompatActivity() {
         val calender:Calendar = Calendar.getInstance()
         val mon = calender.get(Calendar.MONTH)
 
-        /*btnPre.setOnClickListener{
+        *//*btnPre.setOnClickListener{
             tvMonthNum.setText(mon-1)
         }
         btnNext.setOnClickListener {
             tvMonthNum.setText(mon+1)
-        }*/
+        }*//*
         // listView
-       /* val items = mutableListOf<ListViewItem>()
+       *//* val items = mutableListOf<ListViewItem>()
 
         items.add(ListViewItem("자판기","커피","-1,500"))
         items.add(ListViewItem("편의점","담배","-4,500"))
@@ -55,7 +93,7 @@ class MainActivity : AppCompatActivity() {
         listView.setOnItemClickListener { parent, view, position, l ->
             val item = parent.getItemAtPosition(position) as ListViewItem
             Toast.makeText(this, item.title, Toast.LENGTH_SHORT).show()
-        }*/
+        }*//*
 
         // binding
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -73,7 +111,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         // 하단 버튼 바
-        /*var bnv_main = findViewById<FrameLayout>(R.id.bnv_main) as BottomNavigationView
+        *//*var bnv_main = findViewById<FrameLayout>(R.id.bnv_main) as BottomNavigationView
 
         bnv_main.run {
              setOnItemSelectedListener{
@@ -90,7 +128,7 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             selectedItemId = R.id.list_Pay_Bottom
-        }*/
+        }*//*
     }
     private fun setFragment(tag: String, fragment: Fragment){
         val manager: FragmentManager = supportFragmentManager
@@ -111,14 +149,15 @@ class MainActivity : AppCompatActivity() {
         if(tag == TAG_List){
             if(listFragment != null){
                 fragTransaction.show(listFragment)
-                //fragTransaction.replace(R.id.fl_container,fragment)
+                fragTransaction.replace(R.id.fl_container,fragment)
             }
         }
         else if(tag == TAG_Calender){
             if(calendarFragment != null){
                 fragTransaction.show(calendarFragment)
+                Toast.makeText(this,"캘린더",Toast.LENGTH_SHORT).show()
             }
         }
         fragTransaction.commitAllowingStateLoss()
-    }
+    }*/
 }

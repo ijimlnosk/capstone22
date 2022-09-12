@@ -2,8 +2,28 @@
     <string name="app_name">Capstone22</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string-array name="region1">
+    <string-array name="simple_Region1">
         <item>item1</item>
         <item>item2</item>
+        <item>item3</item>
+        <item>item4</item>
+        <item>item5</item>
+        <item>item6</item>
+        <item>item7</item>
+        <item>item8</item>
+        <item>item9</item>
+        <item>item10</item>
+    </string-array>
+    <string-array name="Region2">
+        <item>item1</item>
+        <item>item2</item>
+        <item>item3</item>
+        <item>item4</item>
+        <item>item5</item>
+        <item>item6</item>
+        <item>item7</item>
+        <item>item8</item>
+        <item>item9</item>
+        <item>item10</item>
     </string-array>
 </resources>
