@@ -8,7 +8,6 @@ import android.widget.ImageButton
 import android.widget.ListView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.view.isInvisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.daelim.capstone22.databinding.ActivityMainBinding
@@ -39,9 +38,11 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnList.setOnClickListener {
             setListFragment()
+            finish()
         }
         binding.btnCal.setOnClickListener {
             setCalFragment()
+            finish()
         }
 
     }
@@ -49,10 +50,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun setListFragment(){
         val transaction = supportFragmentManager.beginTransaction().add(R.id.frameLayout,ListFragment())
+        transaction.addToBackStack(null)
         transaction.commit()
     }
     private fun setCalFragment(){
         val transaction = supportFragmentManager.beginTransaction().add(R.id.frameLayout,CalenderFragment())
+        transaction.addToBackStack(null)
         transaction.commit()
     }
     fun setFragment(f: Fragment){

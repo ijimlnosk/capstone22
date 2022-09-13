@@ -80,23 +80,23 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
          </FrameLayout>
+
         <ImageButton
             android:id="@+id/btnList"
-            android:layout_width="100dp"
+            android:layout_width="150dp"
             android:layout_height="50dp"
-            android:layout_margin="12dp"
+            android:layout_margin="15dp"
+            android:src="@drawable/ic_baseline_list_24"
             android:text="내역"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/btnCal"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            android:src="@drawable/ic_baseline_list_24"
-            />
+            app:layout_constraintStart_toStartOf="parent" />
         <ImageButton
             android:id="@+id/btnCal"
-            android:layout_width="100dp"
+            android:layout_width="150dp"
             android:layout_height="50dp"
-            android:layout_margin="12dp"
+            android:layout_margin="15dp"
             android:text="달력"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
