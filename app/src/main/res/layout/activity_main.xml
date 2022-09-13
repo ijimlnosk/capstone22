@@ -78,8 +78,19 @@
          <FrameLayout
              android:id="@+id/frameLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+             android:layout_weight="9">
          </FrameLayout>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/mainNavi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:menu="@menu/navi_menu"
+            app:itemBackground="#ebdba3"
+            app:itemIconTint="#d8a66f"
+            app:itemTextColor="@color/black"
+            android:layout_weight="1"/>
 
         <ImageButton
             android:id="@+id/btnList"

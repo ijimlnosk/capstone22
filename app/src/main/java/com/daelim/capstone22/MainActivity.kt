@@ -2,21 +2,11 @@ package com.daelim.capstone22
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.widget.ImageButton
-import android.widget.ListView
-import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.daelim.capstone22.databinding.ActivityMainBinding
 import com.daelim.capstone22.fragment.CalenderFragment
 import com.daelim.capstone22.fragment.ListFragment
-import com.google.android.material.navigation.NavigationView
-import kotlinx.android.synthetic.main.activity_main.*
-import java.time.LocalDate
-import java.util.*
 
 private const val TAG_List = "list_fragment"
 private const val TAG_Calender = "calender_fragment"
@@ -29,40 +19,83 @@ class MainActivity : AppCompatActivity() {
 
     var flag=0
 
+    /*val datas = mutableListOf<ListData>()*/
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        //initRecycler()
+
+        // 바인딩
         binding=ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
         setFragment(ListFragment())
 
+       /* binding.btnList.setOnClickListener{
+            switchFragment()
+        }*/
+
         binding.btnList.setOnClickListener {
             setListFragment()
-            finish()
         }
         binding.btnCal.setOnClickListener {
             setCalFragment()
-            finish()
         }
-
     }
-
-
+    // 리스트
     private fun setListFragment(){
-        val transaction = supportFragmentManager.beginTransaction().add(R.id.frameLayout,ListFragment())
-        transaction.addToBackStack(null)
+        val transaction = supportFragmentManager.beginTransaction().add(R.id.frameLayout,ListFragment()).addToBackStack(null)
         transaction.commit()
     }
     private fun setCalFragment(){
-        val transaction = supportFragmentManager.beginTransaction().add(R.id.frameLayout,CalenderFragment())
-        transaction.addToBackStack(null)
+        val transaction = supportFragmentManager.beginTransaction().add(R.id.frameLayout,CalenderFragment()).addToBackStack(null)
         transaction.commit()
     }
-    fun setFragment(f: Fragment){
+    fun setFragment(f: ListFragment){
         val ft = supportFragmentManager.beginTransaction()
         ft.replace(R.id.frameLayout,f)
         ft.commit()
     }
+
+    /*private fun switchFragment(){
+       val transaction = supportFragmentManager.beginTransaction()
+       when(flag){
+           0->{
+               transaction.add(R.id.frameLayout,ListFragment())
+               flag=1
+           }
+           1->{
+               transaction.add(R.id.frameLayout,CalenderFragment())
+               flag=2
+           }
+           2->{
+               transaction.add(R.id.frameLayout,ListFragment())
+               flag=1
+           }
+       }
+       transaction.addToBackStack(null)
+       transaction.commit()
+   }*/
+
+
+    /*private fun initRecycler(){
+        val listAdapter = ReListAdapter(this)
+        relist.adapter = listAdapter
+
+        datas.apply {
+            add(ListData(breakdown = "김진솔", pay = "-5,800", name = "이체"))
+            add(ListData(breakdown = "김진솔", pay = "-5,800", name = "이체"))
+            add(ListData(breakdown = "김진솔", pay = "-5,800", name = "이체"))
+            add(ListData(breakdown = "김진솔", pay = "-5,800", name = "이체"))
+            add(ListData(breakdown = "김진솔", pay = "-5,800", name = "이체"))
+            add(ListData(breakdown = "김진솔", pay = "-5,800", name = "이체"))
+
+            listAdapter.datas = datas
+            listAdapter.notifyDataSetChanged()
+        }
+
+    }*/
 
     /*lateinit var binding: ActivityMainBinding
 
