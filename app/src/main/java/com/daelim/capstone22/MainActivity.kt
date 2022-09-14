@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.daelim.capstone22.databinding.ActivityMainBinding
-import com.daelim.capstone22.fragment.CalenderFragment
+import com.daelim.capstone22.fragment.CalendarFragment
 import com.daelim.capstone22.fragment.HomeFragment
 import com.daelim.capstone22.fragment.ListFragment
 
@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         binding.mainNavi.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.BD -> setNaviFragment(TAG_List,ListFragment())
-                R.id.cale -> setNaviFragment(TAG_Calender,CalenderFragment())
+                R.id.cale -> setNaviFragment(TAG_Calender,CalendarFragment())
             }
             true
         }

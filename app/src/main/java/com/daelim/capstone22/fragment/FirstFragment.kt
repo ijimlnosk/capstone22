@@ -1,3 +1,4 @@
+/*
 package com.daelim.capstone22.fragment
 
 import android.os.Bundle
@@ -14,12 +15,19 @@ import kotlinx.android.synthetic.main.fragment_first.*
 
 class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         initView()
     }
-    fun initView(){
-        val firstFragmentStateAdapter = FirstFragmentStateAdapter(MainActivity())
-        calender_ViewPage_Adapter.adapter = firstFragmentStateAdapter
-        calender_ViewPage_Adapter.orientation = ViewPager2.ORIENTATION_VERTICAL
 
+    fun initView() {
+        val firstFragmentStateAdapter
+                = FirstFragmentStateAdapter(MainActivity())
+        calendarViewPager.adapter = firstFragmentStateAdapter
+        calendarViewPager.orientation = ViewPager2.ORIENTATION_VERTICAL
+        firstFragmentStateAdapter.apply {
+            firstFragmentStateAdapter.setCurrentItem(this.firstFragmentPosition, false)
+        }
     }
+
 }
+*/

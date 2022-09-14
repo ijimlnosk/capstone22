@@ -1,13 +1,14 @@
+/*
 package com.daelim.capstone22
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.daelim.capstone22.fragment.CalenderFragment
+import com.daelim.capstone22.fragment.CalendarFragment
 
 class FirstFragmentStateAdapter(fragmentActivity: FragmentActivity):FragmentStateAdapter(fragmentActivity) {
 
-    private val pageCount = Int.MAX_VALUE
+private val pageCount = Int.MAX_VALUE
     val firstFragmentPostion = Int.MAX_VALUE/2
 
     override fun getItemCount(): Int {
@@ -15,9 +16,11 @@ class FirstFragmentStateAdapter(fragmentActivity: FragmentActivity):FragmentStat
     }
 
     override fun createFragment(position: Int): Fragment {
-        val calenderFragment = CalenderFragment()
-        calenderFragment.pageIndex = position
-        return calenderFragment
+        val calendarFragment = CalendarFragment()
+        calendarFragment.pageIndex = position
+        return calendarFragment
     }
 
+
 }
+*/
