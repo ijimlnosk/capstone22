@@ -87,7 +87,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:menu="@menu/navi_menu"
-            app:itemBackground="#ebdba3"
             app:itemIconTint="#d8a66f"
             app:itemTextColor="@color/black"
             android:layout_weight="1"/>
