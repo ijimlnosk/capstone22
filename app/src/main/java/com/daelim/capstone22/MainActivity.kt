@@ -7,10 +7,12 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.daelim.capstone22.databinding.ActivityMainBinding
 import com.daelim.capstone22.fragment.CalenderFragment
+import com.daelim.capstone22.fragment.HomeFragment
 import com.daelim.capstone22.fragment.ListFragment
 
 private const val TAG_List = "list_fragment"
 private const val TAG_Calender = "calender_fragment"
+private const val TAG_Home = "home_fragment"
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,7 +32,8 @@ class MainActivity : AppCompatActivity() {
         binding=ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-        setFragment(ListFragment())
+        //setFragment(ListFragment())
+        setNaviFragment(TAG_Home,HomeFragment())
 
        /* binding.btnList.setOnClickListener{
             switchFragment()
