@@ -2,7 +2,7 @@
     <string name="app_name">Capstone22</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="calender_year_month_format">null</string>
+    <string name="calender_year_month_format">2022년 09월</string>
     <string-array name="simple_Region1">
         <item>김진솔 이체</item>
         <item>item2</item>

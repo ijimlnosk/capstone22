@@ -9,14 +9,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
-import com.daelim.capstone22.CalenderAdapter
-import com.daelim.capstone22.FirstFragmentStateAdapter
-import com.daelim.capstone22.MainActivity
-import com.daelim.capstone22.R
+import androidx.viewpager2.widget.ViewPager2
+import com.daelim.capstone22.*
+import com.daelim.capstone22.databinding.ActivityMainBinding
+import kotlinx.android.synthetic.main.fragment_calender.*
 import kotlinx.android.synthetic.main.fragment_calender.view.*
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 class CalenderFragment : Fragment() {
