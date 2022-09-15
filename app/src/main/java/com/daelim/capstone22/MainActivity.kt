@@ -7,11 +7,12 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.daelim.capstone22.databinding.ActivityMainBinding
 import com.daelim.capstone22.fragment.CalendarFragment
+import com.daelim.capstone22.fragment.FirstFragment
 import com.daelim.capstone22.fragment.HomeFragment
 import com.daelim.capstone22.fragment.ListFragment
 
 private const val TAG_List = "list_fragment"
-private const val TAG_Calender = "calender_fragment"
+private const val TAG_First = "first_fragment"
 private const val TAG_Home = "home_fragment"
 
 class MainActivity : AppCompatActivity() {
@@ -43,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         binding.mainNavi.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.BD -> setNaviFragment(TAG_List,ListFragment())
-                R.id.cale -> setNaviFragment(TAG_Calender,CalendarFragment())
+                R.id.cale -> setNaviFragment(TAG_First,FirstFragment())
             }
             true
         }
@@ -83,13 +84,13 @@ class MainActivity : AppCompatActivity() {
 
         // manager에 add되어있는 fragment들을 변수로 할당
         val listFt = manager.findFragmentByTag(TAG_List)
-        val calFt = manager.findFragmentByTag(TAG_Calender)
+        val firFt = manager.findFragmentByTag(TAG_First)
         // 모든 fragment hide
         if(listFt!=null){
             ft.hide(listFt)
         }
-        if(calFt!=null){
-            ft.hide(calFt)
+        if(firFt!=null){
+            ft.hide(firFt)
         }
 
         // 선택한 항목에 따라 맞는 fragment show
@@ -97,9 +98,9 @@ class MainActivity : AppCompatActivity() {
             if(listFt!=null){
                 ft.show(listFt)
             }
-        }else if(tag == TAG_Calender){
-            if (calFt!=null){
-                ft.show(calFt)
+        }else if(tag == TAG_First){
+            if (firFt!=null){
+                ft.show(firFt)
             }
         }
         //end

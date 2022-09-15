@@ -1,4 +1,3 @@
-/*
 package com.daelim.capstone22
 
 import androidx.fragment.app.Fragment
@@ -9,7 +8,7 @@ import com.daelim.capstone22.fragment.CalendarFragment
 class FirstFragmentStateAdapter(fragmentActivity: FragmentActivity):FragmentStateAdapter(fragmentActivity) {
 
 private val pageCount = Int.MAX_VALUE
-    val firstFragmentPostion = Int.MAX_VALUE/2
+    val firstFragmentPosition = Int.MAX_VALUE/2
 
     override fun getItemCount(): Int {
         return Int.MAX_VALUE
@@ -23,4 +22,3 @@ private val pageCount = Int.MAX_VALUE
 
 
 }
-*/

@@ -7,7 +7,8 @@
     android:orientation="vertical"
     tools:context=".CalenderFragment">
 
-    <TextView
+    // 주간 캘린더
+    <!--<TextView
         android:id="@+id/text_year_month"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,7 +24,7 @@
         android:id="@+id/week_recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        />
+        />-->
 
     <!--<CalendarView
         android:id="@+id/calenderView"
@@ -142,7 +143,7 @@
 
     </LinearLayout>-->
 
-        <!--<TextView
+        <TextView
             android:id="@+id/calendar_year_month_text"
             android:layout_width="match_parent"
             android:layout_height="60dp"
@@ -222,5 +223,5 @@
                 app:layout_constrainedHeight="true"
                 tools:listitem="@layout/list_item_calendar"/>
 
-        </LinearLayout>-->
+        </LinearLayout>
 </LinearLayout>

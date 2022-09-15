@@ -1,26 +1,33 @@
 package com.daelim.capstone22.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.daelim.capstone22.*
 import com.daelim.capstone22.VO.CalendarVO
 import com.daelim.capstone22.databinding.FragmentCalendarBinding
 import kotlinx.android.synthetic.main.fragment_calendar.*
 import kotlinx.android.synthetic.main.fragment_calendar.view.*
+import java.text.SimpleDateFormat
 import java.time.DayOfWeek
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.time.temporal.TemporalAdjusters
 import java.util.*
 
+
 class CalendarFragment : Fragment() {
 
-    private var _binding: FragmentCalendarBinding? = null
+    // 주간 캘린더
+    /*private var _binding: FragmentCalendarBinding? = null
     private val binding get() = _binding!!
 
     lateinit var calendarAdapter: CalendarAdapter
@@ -72,7 +79,7 @@ class CalendarFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
+    }*/
 
 
     /*private lateinit var binding: FragmentCalenderBinding
@@ -96,7 +103,7 @@ class CalendarFragment : Fragment() {
         binding.calenderView.setYearMonth
     }
 */
-    /*private val TAG = javaClass.simpleName
+    private val TAG = javaClass.simpleName
     lateinit var mContext: Context
 
     var pageIndex = 0
@@ -105,10 +112,10 @@ class CalendarFragment : Fragment() {
     lateinit var calender_year_month_text: TextView
     lateinit var calender_layout: LinearLayout
     lateinit var calender_view: RecyclerView
-    lateinit var calenderAdapter: CalenderAdapter
+    lateinit var calenderAdapter: CalendarAdapter
 
     companion object {
-        var instance: CalenderFragment? = null
+        var instance: CalendarFragment? = null
     }
 
     override fun onAttach(context: Context) {
@@ -127,7 +134,7 @@ class CalendarFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_calender, container, false)
+        val view = inflater.inflate(R.layout.fragment_calendar, container, false)
         initView(view)
         return view
     }
@@ -154,5 +161,5 @@ class CalendarFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         instance = null
-    }*/
+    }
 }
