@@ -19,9 +19,19 @@
         <entry key="..\:/Users/201530214/AndroidStudioProjects/capstone22/app/src/main/res/layout/list_item_calendar.xml" value="0.1838768115942029" />
         <entry key="..\:/Users/201530214/AndroidStudioProjects/capstone22/app/src/main/res/menu/bottom_nav_menu.xml" value="0.34375" />
         <entry key="..\:/Users/201530214/AndroidStudioProjects/capstone22/app/src/main/res/menu/navi_menu.xml" value="0.34375" />
+        <entry key="..\:/Users/KIM/AndroidStudioProjects/capstone22/app/src/main/res/drawable/background_color.xml" value="0.2085" />
+        <entry key="..\:/Users/KIM/AndroidStudioProjects/capstone22/app/src/main/res/drawable/buttonshape.xml" value="0.192" />
+        <entry key="..\:/Users/KIM/AndroidStudioProjects/capstone22/app/src/main/res/drawable/ic_baseline_calendar_today_24.xml" value="0.2085" />
+        <entry key="..\:/Users/KIM/AndroidStudioProjects/capstone22/app/src/main/res/drawable/ic_baseline_list_24.xml" value="0.2085" />
+        <entry key="..\:/Users/KIM/AndroidStudioProjects/capstone22/app/src/main/res/drawable/tv_solid_rect.xml" value="0.362" />
+        <entry key="..\:/Users/KIM/AndroidStudioProjects/capstone22/app/src/main/res/drawable/tv_stroke_rect.xml" value="0.362" />
+        <entry key="..\:/Users/KIM/AndroidStudioProjects/capstone22/app/src/main/res/layout/activity_join.xml" value="0.32472826086956524" />
         <entry key="..\:/Users/KIM/AndroidStudioProjects/capstone22/app/src/main/res/layout/activity_loding.xml" value="0.3619791666666667" />
         <entry key="..\:/Users/KIM/AndroidStudioProjects/capstone22/app/src/main/res/layout/activity_login.xml" value="0.3619791666666667" />
         <entry key="..\:/Users/KIM/AndroidStudioProjects/capstone22/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/KIM/AndroidStudioProjects/capstone22/app/src/main/res/layout/fragment_calendar.xml" value="0.33" />
+        <entry key="..\:/Users/KIM/AndroidStudioProjects/capstone22/app/src/main/res/layout/fragment_first.xml" value="0.16802536231884058" />
+        <entry key="..\:/Users/KIM/AndroidStudioProjects/capstone22/app/src/main/res/layout/list_item_calendar.xml" value="0.32472826086956524" />
       </map>
     </option>
   </component>

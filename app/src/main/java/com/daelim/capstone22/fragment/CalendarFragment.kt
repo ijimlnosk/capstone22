@@ -103,6 +103,8 @@ class CalendarFragment : Fragment() {
         binding.calenderView.setYearMonth
     }
 */
+    
+
     private val TAG = javaClass.simpleName
     lateinit var mContext: Context
 
@@ -138,6 +140,11 @@ class CalendarFragment : Fragment() {
         initView(view)
         return view
     }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+    }
+
     fun initView(view: View){
 
         pageIndex -= (Int.MAX_VALUE/2)
@@ -151,11 +158,11 @@ class CalendarFragment : Fragment() {
             time
         }
         currentDate = date
-        Log.e(TAG,"%date")
+        Log.e(TAG,"$date")
         // 포맷
-        var dateTime: String = SimpleDateFormat(
-            mContext.getString(R.string.calender_year_month_format),Locale.KOREA).format(date.time)
-        calender_year_month_text.setText(dateTime)
+        var datetime: String = SimpleDateFormat(
+            mContext.getString(R.string.calendar_year_month_format),Locale.KOREA).format(date.time)
+        calender_year_month_text.setText(datetime)
     }
 
     override fun onDestroy() {

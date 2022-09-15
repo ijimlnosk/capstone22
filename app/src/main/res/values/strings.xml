@@ -2,7 +2,6 @@
     <string name="app_name">Capstone22</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="calender_year_month_format">2022년 09월</string>
     <string-array name="simple_Region1">
         <item>김진솔 이체</item>
         <item>item2</item>
@@ -27,4 +26,11 @@
         <item>item9</item>
         <item>item10</item>
     </string-array>
+    <!--  CreateRoutine Fragment - list_item_workout  -->
+    <string name="create_set_text">%1$s set</string>
+    <string name="create_prep_text">%1$s prep(s)</string>
+    <string name="create_workout_text">%1$s workout(s)</string>
+    <string name="create_rest_text">%1$s rest(s)</string>
+
+    <string name="calendar_year_month_format">y년M월</string>
 </resources>

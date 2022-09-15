@@ -3,6 +3,7 @@ package com.daelim.capstone22
 import android.content.Context
 import android.graphics.Typeface
 import android.icu.text.Transliterator
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.inflate
