@@ -3,11 +3,9 @@
 
     <item
         android:id="@+id/BD"
-        android:title="내역"
         android:icon="@drawable/ic_baseline_list_24"/>
     <item
         android:id="@+id/cale"
-        android:title="달력"
         android:icon="@drawable/ic_baseline_calendar_today_24"/>
 
 </menu>

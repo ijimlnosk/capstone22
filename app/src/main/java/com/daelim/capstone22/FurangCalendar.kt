@@ -41,9 +41,9 @@ class FurangCalendar(date: Date) {
     private fun makePrevTail(calendar: Calendar){
         calendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH) -1)
         val maxDate = calendar.getActualMaximum(Calendar.DATE)
-        var maxoffsetDate = maxDate - prevTail
+        var maxOffsetDate = maxDate - prevTail
 
-        for(i in 1..prevTail) dateList.add(++maxoffsetDate)
+        for(i in 1..prevTail) dateList.add(++maxOffsetDate)
     }
 
     private fun makeCurrentMonth(calendar: Calendar){

@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        setNaviFragment(TAG_Home,HomeFragment())
+        setNaviFragment(TAG_List,ListFragment())
 
         // 하단 네비게이션 바인딩
         binding.mainNavi.setOnItemSelectedListener {

@@ -15,7 +15,7 @@ private val pageCount = Int.MAX_VALUE
     }
 
     override fun createFragment(position: Int): Fragment {
-        val calendarFragment = CalendarFragment()
+        val calendarFragment = CalendarFragment(position)
         calendarFragment.pageIndex = position
         return calendarFragment
     }

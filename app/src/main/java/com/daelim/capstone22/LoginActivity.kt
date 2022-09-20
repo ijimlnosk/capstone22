@@ -39,9 +39,11 @@ class LoginActivity : AppCompatActivity() {
             // 입력값과 저장된 값 비교
             if(email==saveEmail&&pw==savePw){
                 // 성공
-                dialog("Success")
+                dialog("success")
+                val intent = Intent(this,MainActivity::class.java)
+                startActivity(intent)
             }
-            if(email.isEmpty()||pw.isEmpty()){
+            else if(email.isEmpty()||pw.isEmpty()){
                 dialog("isBlank")
             }
             else{
@@ -67,7 +69,7 @@ class LoginActivity : AppCompatActivity() {
             dialog.setTitle("Blank")
             dialog.setMessage("아이디 또는 비밀번호를 입력해주세요")
         }
-        else if(type.equals("fail")){
+        if(type.equals("fail")){
             dialog.setTitle("FAIL LOGIN")
             dialog.setMessage("아이디와 비밀번호를 확인해주세요")
          }

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.daelim.capstone22.*
 import com.daelim.capstone22.VO.CalendarVO
 import com.daelim.capstone22.databinding.FragmentCalendarBinding
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_calendar.*
 import kotlinx.android.synthetic.main.fragment_calendar.view.*
 import java.text.SimpleDateFormat
@@ -24,7 +25,7 @@ import java.time.temporal.TemporalAdjusters
 import java.util.*
 
 
-class CalendarFragment : Fragment() {
+class CalendarFragment(index: Int) : Fragment() {
 
     // 주간 캘린더
     /*private var _binding: FragmentCalendarBinding? = null
@@ -107,14 +108,15 @@ class CalendarFragment : Fragment() {
 
     private val TAG = javaClass.simpleName
     lateinit var mContext: Context
+    lateinit var mActivity: MainActivity
 
-    var pageIndex = 0
+    var pageIndex = index
     lateinit var currentDate: Date
 
     lateinit var calender_year_month_text: TextView
     lateinit var calender_layout: LinearLayout
     lateinit var calender_view: RecyclerView
-    lateinit var calenderAdapter: CalendarAdapter
+    lateinit var calendarAdapter: CalendarAdapter
 
     companion object {
         var instance: CalendarFragment? = null
@@ -124,6 +126,7 @@ class CalendarFragment : Fragment() {
         super.onAttach(context)
         if(context is MainActivity){
             mContext = context
+            mActivity = activity as MainActivity
         }
     }
 
@@ -139,6 +142,11 @@ class CalendarFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_calendar, container, false)
         initView(view)
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        initCalendar()
+        super.onViewCreated(view, savedInstanceState)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -160,9 +168,34 @@ class CalendarFragment : Fragment() {
         currentDate = date
         Log.e(TAG,"$date")
         // 포맷
-        var datetime: String = SimpleDateFormat(
-            mContext.getString(R.string.calendar_year_month_format),Locale.KOREA).format(date.time)
+        var datetime: String = SimpleDateFormat(mContext.getString(R.string.calendar_year_month_format),
+            Locale.KOREA).format(date.time)
         calender_year_month_text.setText(datetime)
+    }
+
+    fun initCalendar(){
+        calendarAdapter = CalendarAdapter(mContext, calendar_layout, currentDate)
+        calendar_view.adapter = calendarAdapter
+        calender_view.layoutManager = GridLayoutManager(mContext, 7, GridLayoutManager.VERTICAL, false)
+        calendar_view.setHasFixedSize(true)
+        calendarAdapter.itemClick = object :
+        CalendarAdapter.ItemClick{
+            override fun onClick(view: View, position: Int){
+                val firstDateIndex = calendarAdapter.dataList.indexOf(1)
+                val lastDateIndex = calendarAdapter.dataList.lastIndexOf(calendarAdapter.furangCalendar.currentMaxDate)
+                if(position < firstDateIndex || position > lastDateIndex){
+                    return
+                }
+                val day = calendarAdapter.dataList[position].toString()
+                val date = "${calendar_year_month_text.text}${day}일"
+                Log.d(TAG, "$date")
+                val mainTab = mActivity.mainNavi
+                //mainTab.setScrollPosition(1, 0f, true)
+                val mainViewPager = mActivity.main_pager
+                mainViewPager.currentItem = 1
+                RoutineDateLiveData.getInstance().getLiveProgress().value = date
+            }
+        }
     }
 
     override fun onDestroy() {

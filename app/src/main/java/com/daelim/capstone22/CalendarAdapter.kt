@@ -67,6 +67,7 @@ class CalendarAdapter(val context: Context, val calendarLayout: LinearLayout, va
     }
 
     override fun getItemCount(): Int {
+        Log.d("size", dataList.size.toString())
         return dataList.size
     }
 
@@ -75,13 +76,13 @@ class CalendarAdapter(val context: Context, val calendarLayout: LinearLayout, va
         var itemCalendarDateText: TextView = itemView!!.item_calendar_date_text
         var itemCalendarDotView: View = itemView!!.item_calendar_date_text
 
-        fun bind(date: Int, position: Int, context: Context){
+        fun bind(data: Int, position: Int, context: Context){
 
             val firstDateindex = furangCalendar.prevTail
             val lastDateIndex = dataList.size - furangCalendar.nextHead -1
 
             // 날짜 표시
-            itemCalendarDateText.setText(date.toString())
+            itemCalendarDateText.setText(data.toString())
 
             // 오늘 날짜 처리
             var dateString: String = SimpleDateFormat("dd", Locale.KOREA).format(date)
@@ -90,10 +91,11 @@ class CalendarAdapter(val context: Context, val calendarLayout: LinearLayout, va
                 itemCalendarDateText.setTypeface(itemCalendarDateText.typeface, Typeface.BOLD)
             }
 
-            // 현재 월의 1일 이전, 현ㄹ재 월을 마지막일 이후 값의 텍스트 회색처리
+            // 현재 월의 1일 이전, 현재 월을 마지막일 이후 값의 텍스트 회색처리
             if (position < firstDateindex || position > lastDateIndex){
-                itemCalendarDateText.setTextAppearance(R.color.teal_200)
+                itemCalendarDateText.setTextAppearance(R.style.LightColorTextViewStyle)
                 itemCalendarDotView.background = null
+                //itemCalendarDotView.setBackgroundResource(R.drawable.lightgray)
             }
 
         }
