@@ -1,4 +1,4 @@
-package com.daelim.capstone22
+package com.daelim.capstone22.calendar
 
 import android.content.Context
 import android.graphics.Canvas
@@ -7,7 +7,6 @@ import android.graphics.Paint
 import android.graphics.Rect
 import android.util.AttributeSet
 import android.view.View
-import org.w3c.dom.Attr
 import java.util.*
 import kotlin.random.Random
 import kotlin.random.nextInt

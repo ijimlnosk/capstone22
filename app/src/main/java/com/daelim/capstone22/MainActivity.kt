@@ -10,6 +10,9 @@ import com.daelim.capstone22.fragment.CalendarFragment
 import com.daelim.capstone22.fragment.FirstFragment
 import com.daelim.capstone22.fragment.HomeFragment
 import com.daelim.capstone22.fragment.ListFragment
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.OkHttpClient
+import org.json.JSONObject
 
 private const val TAG_List = "list_fragment"
 private const val TAG_First = "first_fragment"

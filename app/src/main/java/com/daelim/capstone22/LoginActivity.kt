@@ -10,11 +10,22 @@ import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.daelim.capstone22.data.SignUpRequestBody
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import okhttp3.Call
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody
+import org.json.JSONObject
+import retrofit2.http.Body
+import retrofit2.http.Header
+import retrofit2.http.Headers
+import retrofit2.http.POST
 
 class LoginActivity : AppCompatActivity() {
 
@@ -23,6 +34,19 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        //post
+       /* val JSON = "application/json; charset=utf-8".toMediaTypeOrNull()
+
+        var url = "localhost:8080/signup"
+        val client = OkHttpClient
+
+        val json = JSONObject()
+        json.put("email","String")
+        json.put("password","String")
+
+        val body = RequestBody.create(JSON, json.toString())*/
+
 
         //로그인
         btn_userLogin.setOnClickListener {

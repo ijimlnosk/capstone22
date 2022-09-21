@@ -1,4 +1,4 @@
-package com.daelim.capstone22
+package com.daelim.capstone22.calendar
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

@@ -19,6 +19,8 @@
     <color name="light_background">#FFFFFFFF</color>
     <color name="night_background">#222222</color>
 
+    <color name="transparent">#00000000</color>
+
     <!--  routine color  -->
     <color name="routine_red">#FF0000</color>
     <color name="routine_orange">#FF9800</color>

@@ -12,16 +12,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.daelim.capstone22.*
-import com.daelim.capstone22.VO.CalendarVO
-import com.daelim.capstone22.databinding.FragmentCalendarBinding
+import com.daelim.capstone22.calendar.CalendarAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_calendar.*
 import kotlinx.android.synthetic.main.fragment_calendar.view.*
 import java.text.SimpleDateFormat
-import java.time.DayOfWeek
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.time.temporal.TemporalAdjusters
 import java.util.*
 
 

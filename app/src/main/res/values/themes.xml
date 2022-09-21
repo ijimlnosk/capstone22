@@ -39,4 +39,8 @@
         <item name="android:textColor">@color/night_background</item>
         <item name="android:background">@color/trans</item>
     </style>
+    <style name="transparent">
+        <item name="android:textColor">@color/transparent</item>
+        <item name="android:backgroundTint">@color/trans</item>
+    </style>
 </resources>
