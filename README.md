@@ -11,6 +11,10 @@
 
 # 개발 일지
 
+## 2022-09-28
+- sigin API 연결 완
+
+
 ## 2022-09-14
 - ViewPager2를 이용하여 custom calendar만들기
   - RecyclerView의 GridLayout 사용
