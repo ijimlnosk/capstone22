@@ -6,7 +6,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.activity_join.*
@@ -31,7 +30,6 @@ class JoinActivity : AppCompatActivity() {
         // if (key == edt_email) 일 경우 true
         //  }
         //}
-
         //가입 버튼 클릭
         btn_joinOk.setOnClickListener {
             Log.d(TAG, "가입 버튼 클릭")

@@ -5,35 +5,32 @@ import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.util.Log
-import android.widget.Button
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.daelim.capstone22.data.SignUpRequestBody
+import com.daelim.capstone22.data.SignUpRequestBodyDTO
+import com.daelim.capstone22.databinding.ActivityLoginBinding
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers.Main
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import okhttp3.Call
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.RequestBody
-import org.json.JSONObject
-import retrofit2.http.Body
-import retrofit2.http.Header
-import retrofit2.http.Headers
-import retrofit2.http.POST
+import kotlinx.android.synthetic.main.activity_login.view.*
 
 class LoginActivity : AppCompatActivity() {
-
     val TAG: String = "LoginActivity"
+    private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+
+        val userData = SignUpRequestBodyDTO(
+            binding.edtInputEmail.edt_InputEmail?.text.toString(),
+            binding.edtInputPw.edt_InputPw?.text.toString()
+        )
+
+        binding.btnUserLogin.setOnClickListener{
+            val signInWork = SignInWork(userData)
+            signInWork.sign()
+        }
 
         //post
        /* val JSON = "application/json; charset=utf-8".toMediaTypeOrNull()
@@ -49,7 +46,7 @@ class LoginActivity : AppCompatActivity() {
 
 
         //로그인
-        btn_userLogin.setOnClickListener {
+        /*btn_userLogin.setOnClickListener {
 
             //edt에 입력된 값 받아오기
             val email = edt_InputEmail.text.toString()
@@ -107,6 +104,6 @@ class LoginActivity : AppCompatActivity() {
         }
 
         dialog.setPositiveButton("확인",dialog_listener)
-        dialog.show()
+        dialog.show()*/
     }
 }
