@@ -1,28 +1,74 @@
 package com.daelim.capstone22
 
-import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.daelim.capstone22.data.SignUpRequestBodyDTO
+import com.daelim.capstone22.`object`.SignInAPI
+import com.daelim.capstone22.data.SignInRequestBodyDTO
 import com.daelim.capstone22.databinding.ActivityLoginBinding
+import com.daelim.capstone22.service.SignInService
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_login.view.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import kotlin.math.sign
 
-class LoginActivity : AppCompatActivity() {
+class SignInActivity : AppCompatActivity() {
     val TAG: String = "LoginActivity"
     private lateinit var binding: ActivityLoginBinding
+    var signIn:SignInRequestBodyDTO? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(R.layout.activity_login)
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl("http://192.168.123.137:8080")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        var signInService: SignInService = retrofit.create(SignInService::class.java)
+
+        btnUserLogin.setOnClickListener {
+            var txtEmail = edt_InputEmail.text.toString()
+            var txtPassword = edt_InputPw.text.toString()
+
+            signInService.requestSignIn(txtEmail,txtPassword).enqueue(object : Callback<SignInRequestBodyDTO> {
+                override fun onFailure(call: Call<SignInRequestBodyDTO>, t: Throwable) {
+                    t.message?.let { it1 -> Log.e("LOGIN", it1) }
+                    var dialog = AlertDialog.Builder(this@SignInActivity)
+                    dialog.setTitle("에러")
+                    dialog.setMessage("호출실패")
+                    dialog.show()
+                }
+
+                override fun onResponse(
+                    call: Call<SignInRequestBodyDTO>,
+                    response: Response<SignInRequestBodyDTO>
+                ) {
+                    signIn = response.body()
+                    Log.d("LOGIN","email : "+signIn?.email)
+                    Log.d("LOGIN","password : "+signIn?.password)
+                    var dialog = AlertDialog.Builder(this@SignInActivity)
+                    dialog.setTitle(signIn?.email)
+                    dialog.setMessage(signIn?.password)
+                    dialog.show()
+                    intent = Intent(this@SignInActivity,MainActivity::class.java)
+                    startActivity(intent)
+                }
+            })
+        }
+
+        /*binding = ActivityLoginBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 
-        val userData = SignUpRequestBodyDTO(
+        val userData = SignInRequestBodyDTO(
             binding.edtInputEmail.edt_InputEmail?.text.toString(),
             binding.edtInputPw.edt_InputPw?.text.toString()
         )
@@ -30,7 +76,7 @@ class LoginActivity : AppCompatActivity() {
         binding.btnUserLogin.setOnClickListener{
             val signInWork = SignInWork(userData)
             signInWork.sign()
-        }
+        }*/
 
         //post
        /* val JSON = "application/json; charset=utf-8".toMediaTypeOrNull()
