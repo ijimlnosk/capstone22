@@ -1,16 +1,15 @@
 package com.daelim.capstone22.data
 
 import com.google.gson.annotations.SerializedName
-import java.time.LocalDateTime
 import java.util.*
 
-data class SignUpRequest(
+data class SignUpResponse(
     @SerializedName("email")
-    val email:String,
+    var email: String,
     /*@SerializedName("create_at")
-    val create_at: LocalDateTime,*/
-    @SerializedName("password")
-    val password:String,
+    var create_at: Date,*/
     @SerializedName("name")
-    val name:String,
+    var name: String,
+    @SerializedName("password")
+    var password: String
 )

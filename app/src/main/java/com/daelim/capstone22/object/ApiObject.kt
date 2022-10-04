@@ -1,13 +1,26 @@
 package com.daelim.capstone22.`object`
 
 import com.daelim.capstone22.service.SignInService
+import com.daelim.capstone22.service.SignUpService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object SignInAPI {
-    private const val BASE_URL="https://localhost:8080"
+object ApiObject {
+
+    private const val BASE_URL = "http://172.20.10.2:8080"
+
+    private val retrofit by lazy {
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+    val signInService: SignInService = retrofit.create(SignInService::class.java)
+    val signUpService: SignUpService = retrofit.create(SignUpService::class.java)
+
+    /*private const val BASE_URL="http://172.16.1.161:8080"
 
     private val okHttpClient: OkHttpClient by lazy {
         OkHttpClient.Builder().addInterceptor(HttpLoggingInterceptor().apply {
@@ -23,5 +36,5 @@ object SignInAPI {
     }
     val emgMedService: SignInService by lazy {
         retrofit.create(SignInService::class.java)
-    }
+    }*/
 }

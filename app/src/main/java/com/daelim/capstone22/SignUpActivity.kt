@@ -1,14 +1,19 @@
 package com.daelim.capstone22
 
-import android.content.Context
-import android.content.DialogInterface
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.daelim.capstone22.`object`.ApiObject.signUpService
+import com.daelim.capstone22.data.SignUpRequest
+import com.daelim.capstone22.data.SignUpResponse
 import kotlinx.android.synthetic.main.activity_join.*
+import kotlinx.android.synthetic.main.activity_login.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.time.LocalDateTime
 
 val TAG : String = "JoinActivity"
 var isBlank = false
@@ -19,6 +24,7 @@ class JoinActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_join)
+        var signUp:SignUpResponse?=null
 
         // 이메일 전송
         // btn_emailSend.setOnClickListener {  }
@@ -34,11 +40,46 @@ class JoinActivity : AppCompatActivity() {
         btn_joinOk.setOnClickListener {
             Log.d(TAG, "가입 버튼 클릭")
 
-            val email = edt_email.text.toString()
-            val pw = edt_PW.text.toString()
-            val pwOk = edt_PWok.text.toString()
+            val jName = edt_name.text.toString()
+            val jEmail = edt_email.text.toString()
+            val jPw = edt_PW.text.toString()
+            val jPwOk = edt_PWok.text.toString()
 
-            // 빈 항목
+            val jDate = LocalDateTime.now()
+
+            btn_joinOk.setOnClickListener {
+                signUpService.requestSignUp(SignUpRequest(email = jEmail, name = jName, password = jPw))
+                    .enqueue(object : Callback<SignUpResponse>{
+                        override fun onResponse(
+                            call: Call<SignUpResponse>,
+                            response: Response<SignUpResponse>
+                        ) {
+                            signUp = response.body()
+                            //Log.d("LOGIN","name : " + signIn?.name)
+                            Log.d("JOIN", "email : " + signUp?.email)
+                            //Log.d("JOIN","create_at : " + signUp?.create_at)
+                            Log.d("JOIN","name : "+signUp?.name)
+                            Log.d("JOIN", "password : " + signUp?.password)
+                            var dialog = AlertDialog.Builder(this@JoinActivity)
+                            dialog.setTitle(signUp?.email)
+                            //dialog.setMessage(signUp?.create_at.toString())
+                            dialog.setMessage(signUp?.name)
+                            dialog.setMessage(signUp?.password)
+                            dialog.show()
+                        }
+
+                        override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
+                            Log.e("JOIN", t.message.toString())
+                            var dialog = AlertDialog.Builder(this@JoinActivity)
+                            dialog.setTitle("에러")
+                            dialog.setMessage("호출실패")
+                            dialog.show()
+                        }
+
+                    })
+            }
+
+            /*// 빈 항목
             if(email.isEmpty()||pw.isEmpty()||pwOk.isEmpty()){
                 isBlank = true
             }
@@ -95,6 +136,7 @@ class JoinActivity : AppCompatActivity() {
         }
 
         dialog.setPositiveButton("확인",dialog_listener)
-        dialog.show()
+        dialog.show() */
+        }
     }
 }

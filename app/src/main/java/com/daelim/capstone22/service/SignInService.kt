@@ -1,17 +1,17 @@
 package com.daelim.capstone22.service
 
+import android.provider.ContactsContract
 import com.daelim.capstone22.data.SignInRequestBodyDTO
+import com.daelim.capstone22.data.SigninResponse
 import retrofit2.Call
 import retrofit2.http.*
 
 interface SignInService {
 
-        @FormUrlEncoded
-        @POST("/signin")
-        fun requestSignIn(
-                @Field("email") email:String,
-                @Field("password") password:String
-        ) : Call<SignInRequestBodyDTO>
+        //@FormUrlEncoded
+        @Headers("Content-Type: application/json")
+        @POST("members/signin")
+        fun requestSignIn(@Body signInRequestBodyDTO: SignInRequestBodyDTO) : Call<SigninResponse>
 
         /*@Headers("Content-Type: application/json")
         @POST("signin")
