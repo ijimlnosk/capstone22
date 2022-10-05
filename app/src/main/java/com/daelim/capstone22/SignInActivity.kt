@@ -1,6 +1,7 @@
 package com.daelim.capstone22
 
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,19 +9,17 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.daelim.capstone22.`object`.ApiObject.signInService
 import com.daelim.capstone22.data.SignInRequestBodyDTO
-import com.daelim.capstone22.data.SignUpRequest
 import com.daelim.capstone22.data.SigninResponse
-import com.daelim.capstone22.service.SignInService
 import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.http.Body
 
 class SignInActivity : AppCompatActivity() {
     val TAG: String = "LoginActivity"
     //private lateinit var binding: ActivityLoginBinding
     var signIn:SigninResponse? = null
+    var Error: ErrorResponse?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,21 +42,25 @@ class SignInActivity : AppCompatActivity() {
                     dialog.setMessage("호출실패")
                     dialog.show()
                 }
-
                 override fun onResponse(
                     call: Call<SigninResponse>,
                     response: Response<SigninResponse>
                 ) {
                     signIn = response.body()
-                    //Log.d("LOGIN","name : " + signIn?.name)
-                    Log.d("LOGIN", "email : " + signIn?.email)
-                    Log.d("LOGIN", "password : " + signIn?.password)
-                    var dialog = AlertDialog.Builder(this@SignInActivity)
-                    dialog.setTitle(signIn?.email)
-                    dialog.setMessage(signIn?.password)
-                    dialog.show()
-                    if (edt_InputEmail.toString().isEmpty()||edt_InputPw.toString().isEmpty()){
-                        Toast.makeText(this@SignInActivity,"빈 항목이 있습니다.",Toast.LENGTH_SHORT).show()
+                    /*val intent = Intent(this@SignInActivity,MainActivity::class.java)
+                    startActivity(intent)*/
+                    if (signIn?.result.equals("성공")){
+                        Log.d("LOGIN","result : "+signIn?.result)
+                        val sharedPreferences = getSharedPreferences("jwt", MODE_PRIVATE)
+                        val editor : SharedPreferences.Editor = sharedPreferences.edit()
+                        editor.putString("token",signIn?.token.toString())
+                        editor.apply()
+                        Log.d("LOGIN","token : "+signIn?.token)
+                        intent = Intent(this@SignInActivity,MainActivity::class.java)
+                        startActivity(intent)
+                    }
+                    else if (signIn?.result.equals("실패")){
+                        Toast.makeText(this@SignInActivity,"오류",Toast.LENGTH_SHORT).show()
                     }
                 }
             })

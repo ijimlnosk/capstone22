@@ -1,9 +1,9 @@
 package com.daelim.capstone22
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.daelim.capstone22.`object`.ApiObject.signUpService
 import com.daelim.capstone22.data.SignUpRequest
@@ -44,11 +44,10 @@ class JoinActivity : AppCompatActivity() {
             val jEmail = edt_email.text.toString()
             val jPw = edt_PW.text.toString()
             val jPwOk = edt_PWok.text.toString()
-
             val jDate = LocalDateTime.now()
 
             btn_joinOk.setOnClickListener {
-                signUpService.requestSignUp(SignUpRequest(email = jEmail, name = jName, password = jPw))
+                signUpService.requestSignUp(SignUpRequest(email = jEmail,name = jName, password = jPw))
                     .enqueue(object : Callback<SignUpResponse>{
                         override fun onResponse(
                             call: Call<SignUpResponse>,
@@ -56,16 +55,16 @@ class JoinActivity : AppCompatActivity() {
                         ) {
                             signUp = response.body()
                             //Log.d("LOGIN","name : " + signIn?.name)
-                            Log.d("JOIN", "email : " + signUp?.email)
+                            Log.d("JOIN", "message : " + signUp?.message)
                             //Log.d("JOIN","create_at : " + signUp?.create_at)
-                            Log.d("JOIN","name : "+signUp?.name)
-                            Log.d("JOIN", "password : " + signUp?.password)
                             var dialog = AlertDialog.Builder(this@JoinActivity)
-                            dialog.setTitle(signUp?.email)
-                            //dialog.setMessage(signUp?.create_at.toString())
-                            dialog.setMessage(signUp?.name)
-                            dialog.setMessage(signUp?.password)
                             dialog.show()
+                            val intent = Intent(this@JoinActivity,SignInActivity::class.java)
+                            startActivity(intent)
+                            /* if(email 인증이 완료 되었다면){
+                                    val intent = Intent(this@JoinActivity,SignInActivity::class.java)
+                                    startActivity(intent)
+                             */
                         }
 
                         override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
