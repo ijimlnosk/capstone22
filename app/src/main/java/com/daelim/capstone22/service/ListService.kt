@@ -1,20 +1,16 @@
 package com.daelim.capstone22.service
 
-import android.content.SharedPreferences
-import com.daelim.capstone22.data.ListRequest
-import com.daelim.capstone22.data.ListResponse
-import com.daelim.capstone22.data.SignInRequestBodyDTO
-import com.daelim.capstone22.data.SigninResponse
+import com.daelim.capstone22.data.*
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.Headers
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface ListService {
 
+    /*@Headers("Content-Type: application/json")
+    @GET("transactions")
+    fun requestHeaderList(@Header("authorization") accessToken:String):Call<SignUpResponse>*/
+
     @Headers("Content-Type: application/json")
-    @POST("transaction")
-    fun requestList(@Body listRequest: ListRequest) : Call<ListResponse>
-
-
+    @POST("transactions")
+    fun requestBodyList(@Body listRequest: ListRequest) : Call<ListResponse>
 }

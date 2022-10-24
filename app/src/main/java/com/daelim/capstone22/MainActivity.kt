@@ -5,11 +5,13 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import com.daelim.capstone22.data.SigninResponse
 import com.daelim.capstone22.databinding.ActivityMainBinding
 import com.daelim.capstone22.fragment.CalendarFragment
 import com.daelim.capstone22.fragment.FirstFragment
 import com.daelim.capstone22.fragment.HomeFragment
 import com.daelim.capstone22.fragment.ListFragment
+import com.daelim.capstone22.service.ListService
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import org.json.JSONObject
@@ -24,8 +26,14 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
 
+    var listIn: ListService? = null
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
 
         // 바인딩
         binding=ActivityMainBinding.inflate(layoutInflater)
