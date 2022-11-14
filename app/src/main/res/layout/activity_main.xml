@@ -10,14 +10,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="#e8b370">
+        android:background="#ebdba3">
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="20dp"
-        android:background="#cebe8b">
+        android:background="#e8b370">
     </LinearLayout>
 
     <LinearLayout

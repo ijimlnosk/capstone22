@@ -24,12 +24,6 @@
             android:layout_height="wrap_content"
             android:text="19"
             android:textAlignment="center" />
-       <!-- <TextView
-            android:id="@+id/paydata"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="5000원"
-            android:textAlignment="center"/>-->
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

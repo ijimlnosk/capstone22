@@ -5,19 +5,53 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ListFragment"
+    android:orientation="vertical"
     android:background="#f6efc4">
 
-
-    <!--<androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/relist"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/list_item" />-->
+        tools:context=".ListFragment">
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_left"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:background="@drawable/left"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/txHeader"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/txHeader"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:text="2022년11월"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            style="@style/TextViewStyle"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_right"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:background="@drawable/right"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/txHeader"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
@@ -26,7 +60,7 @@
         android:nestedScrollingEnabled="false"
         android:overScrollMode="never"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/list_view">
+        tools:listitem="@layout/list_item">
     </androidx.recyclerview.widget.RecyclerView>
 
     // 동작하는 리스트뷰
@@ -41,6 +75,4 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible"
         />-->
-
-
 </LinearLayout>
