@@ -11,7 +11,7 @@
 
 # 개발 일지
 
-## 2022-11-15
+## 2022-11-16
 - xml 다수 교체
 - logo교체
 - retrofit의 Get에 QueryMap을 이용하여 list에 data 넣기 완료.
