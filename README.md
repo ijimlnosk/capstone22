@@ -19,10 +19,11 @@
 - list 화면에 달(월) 변경시 그에 맞는 list 데이터를 불러오기 완료.
 - 월 변경시 데이터 중복 방지 완료.
 - 이전 달에 데이터가 없을 경우 다음 달의 데이터가 들어가 있어 데이터 충돌이 남
-  - 해결 : if (response.body()?.result?.isEmpty() == true) { //response.body.result에 데이터가 없을 경우
+  - 해결 : if (response.body()?.result?.isEmpty() == true) {
+           //response.body.result에 데이터가 없을 경우 ↑
            Toast.makeText(context,"데이터 없음", Toast.LENGTH_SHORT).show() //Toast 메시지
            datas.clear()  //datas = mutaableListOf<ListData>().clear
-           // 어댑터 연결 부분 다시 붙여주기
+           // 어댑터 연결 부분 다시 붙여주기 ↓
            listFragRecylcerAdapter = ListFragRecylcerAdapter(datas)
            recycler_view.layoutManager = LinearLayoutManager(activity,RecyclerView.VERTICAL,false)
            recycler_view.setHasFixedSize(true)
