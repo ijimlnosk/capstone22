@@ -18,6 +18,17 @@
 - @Path를 이용하여 현재 날짜를 받아와서 API 요청하기 완료
 - list 화면에 달(월) 변경시 그에 맞는 list 데이터를 불러오기 완료.
 - 월 변경시 데이터 중복 방지 완료.
+- 이전 달에 데이터가 없을 경우 다음 달의 데이터가 들어가 있어 데이터 충돌이 남
+  - 해결 : if (response.body()?.result?.isEmpty() == true) { //response.body.result에 데이터가 없을 경우
+                    Toast.makeText(context,"데이터 없음", Toast.LENGTH_SHORT).show() //Toast 메시지
+                    datas.clear()  //datas = mutaableListOf<ListData>().clear
+                    // 어댑터 연결 부분 다시 붙여주기
+                    listFragRecylcerAdapter = ListFragRecylcerAdapter(datas)
+                    recycler_view.layoutManager = LinearLayoutManager(activity,RecyclerView.VERTICAL,false)
+                    recycler_view.setHasFixedSize(true)
+                    recycler_view.adapter = listFragRecylcerAdapter
+                    listFragRecylcerAdapter.datas = datas
+                    listFragRecylcerAdapter.notifyDataSetChanged() //데이터 전체 갱신
 - calendar 화면 날짜에 수입|지출 확인 후 +,-를 색깔별로 표시해줘야함 <- 미완
 
 ## 2022-11-09
