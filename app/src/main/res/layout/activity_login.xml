@@ -6,135 +6,114 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".SignInActivity"
-    android:background="#f6efc4"
+    android:background="#ffffff"
     >
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="#ebdba3"
         android:adjustViewBounds="true"
+        android:gravity="center"
         app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        android:background="@drawable/tv_stroke_rect">
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
             android:background="@drawable/abclogo6"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:background="#e8b370">
     </LinearLayout>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/tv_stroke_rect"
         >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_InputEmail"
-            android:layout_width="match_parent"
+            style="@style/EditViewStyle"
+            android:layout_width="300dp"
             android:layout_height="40dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/tv_stroke_rect"
+            android:background="@drawable/round2"
             android:gravity="center"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_InputEmail"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.9"
-            app:layout_constraintStart_toEndOf="@+id/tv_InputEmail"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.2"
-            style="@style/EditViewStyle"
-            />
+            app:layout_constraintVertical_bias="1.0" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_InputPw"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:inputType="textPassword"
-            android:background="@drawable/tv_stroke_rect"
-            android:gravity="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.9"
-            app:layout_constraintStart_toEndOf="@+id/tv_InputPw"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.4"
             style="@style/EditViewStyle"
-            />
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/round2"
+            android:gravity="center"
+            android:inputType="textPassword"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.289" />
 
-
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_InputEmail"
-            android:layout_width="match_parent"
+            style="@style/TextViewStyle"
+            android:layout_width="300dp"
             android:layout_height="40dp"
-            android:paddingLeft="10dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/tv_stroke_rect"
+            android:background="@drawable/round2"
             android:gravity="center_vertical|start"
+            android:paddingLeft="10dp"
             android:text="Email : "
-            android:textSize="20dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toTopOf="@+id/edt_InputPw"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.05"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.2"
-            style="@style/TextViewStyle"
-            />
+            app:layout_constraintVertical_bias="0.921" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_InputPw"
-            android:layout_width="match_parent"
+            style="@style/TextViewStyle"
+            android:layout_width="300dp"
             android:layout_height="40dp"
-            android:paddingLeft="10dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/tv_stroke_rect"
+            android:background="@drawable/round2"
             android:gravity="center_vertical|start"
+            android:paddingLeft="10dp"
             android:text="비밀번호 : "
-            android:textSize="20dp"
-            android:textStyle="bold"
+            android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.05"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.4"
-            style="@style/TextViewStyle"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/edt_InputEmail"
+            app:layout_constraintVertical_bias="0.022" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_userjoin"
+            style="@style/CalendarDayTextViewStyle"
             android:layout_width="240dp"
             android:layout_height="50dp"
-            android:background="@drawable/buttonshape"
+            android:background="@drawable/button_item"
             android:shadowColor="#5d5a59"
             android:shadowDx="0"
             android:shadowDy="0"
@@ -147,13 +126,13 @@
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.669" />
+            app:layout_constraintVertical_bias="0.455" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnUserLogin"
             android:layout_width="240dp"
             android:layout_height="50dp"
-            android:background="@drawable/buttonshape"
+            android:background="@drawable/button_item"
             android:shadowColor="#5d5a59"
             android:shadowDx="0"
             android:shadowDy="0"
@@ -165,8 +144,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.825" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_userjoin"
+            app:layout_constraintVertical_bias="0.037" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

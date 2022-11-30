@@ -6,32 +6,77 @@
     android:layout_height="match_parent"
     tools:context=".ListFragment"
     android:orientation="vertical"
-    android:background="#f6efc4">
+    android:background="#ffffff">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        tools:context=".ListFragment"
+        android:background="#ffffff">
+
+        <TextView
+            android:id="@+id/tvPlusResult"
+            android:layout_width="250dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:text="수입"
+            android:textSize="15dp"
+            android:gravity="left|center"
+            android:paddingLeft="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/round"
+            style="@style/CalendarDayTextViewStyle">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/tvMinusResult"
+            android:layout_width="250dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="45dp"
+            android:text="지출"
+            android:textSize="15dp"
+            android:gravity="left|center"
+            android:paddingLeft="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/round"
+            style="@style/CalendarDayTextViewStyle">
+
+        </TextView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".ListFragment">
+        tools:context=".ListFragment"
+        android:background="#f6efc4">
 
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_left"
-            android:layout_width="50dp"
-            android:layout_height="60dp"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
             android:background="@drawable/left"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/txHeader"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/txHeader"
             android:layout_width="200dp"
             android:layout_height="50dp"
-            android:text="2022년11월"
-            android:textSize="30sp"
+            android:text="2022 년 11 월"
+            android:textSize="25sp"
             android:textStyle="bold"
             android:gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -42,15 +87,15 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_right"
-            android:layout_width="50dp"
-            android:layout_height="60dp"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
             android:background="@drawable/right"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/txHeader"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="1.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView

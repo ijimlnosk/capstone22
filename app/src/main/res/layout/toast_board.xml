@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/toast_board">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/abclogo1_small"
+            >
+        </ImageView>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvToastText"
+            style="@style/CalendarDayTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="TestToast"
+            android:textSize="20dp"
+            android:background="@drawable/toast_background">
+        </androidx.appcompat.widget.AppCompatTextView>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

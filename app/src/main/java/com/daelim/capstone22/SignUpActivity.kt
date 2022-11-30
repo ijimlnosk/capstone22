@@ -4,6 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.daelim.capstone22.`object`.ApiObject.signUpService
 import com.daelim.capstone22.data.SignUpRequest
@@ -13,6 +16,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.DecimalFormat
 import java.time.LocalDateTime
 
 val TAG : String = "JoinActivity"
@@ -59,12 +63,16 @@ class JoinActivity : AppCompatActivity() {
                             //Log.d("JOIN","create_at : " + signUp?.create_at)
                             var dialog = AlertDialog.Builder(this@JoinActivity)
                             dialog.show()
-                            val intent = Intent(this@JoinActivity,SignInActivity::class.java)
-                            startActivity(intent)
-                            /* if(email 인증이 완료 되었다면){
-                                    val intent = Intent(this@JoinActivity,SignInActivity::class.java)
-                                    startActivity(intent)
-                             */
+                            var toastView = layoutInflater.inflate(R.layout.toast_board,null)
+                            toastView.setBackgroundResource(R.drawable.abclogo1_small)
+                            var txToast = toastView.findViewById<TextView>(R.id.tvToastText)
+                                val intent = Intent(this@JoinActivity,SignInActivity::class.java)
+                                txToast.text = "이메일을 전송했습니다."
+                                var t = Toast(this@JoinActivity)
+                                t.setGravity(Gravity.CENTER,0,400)
+                                t.view = toastView
+                                t.show()
+                                startActivity(intent)
                         }
 
                         override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {

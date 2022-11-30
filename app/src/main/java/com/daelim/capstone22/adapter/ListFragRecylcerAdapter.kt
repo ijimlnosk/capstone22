@@ -1,4 +1,4 @@
-package com.daelim.capstone22.calendar
+package com.daelim.capstone22.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,12 +8,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.daelim.capstone22.R
-import com.daelim.capstone22.data.CalendarData
 import com.daelim.capstone22.data.ListData
 
-class CalendarDataAdapter(private val context: MutableList<ListData>) : RecyclerView.Adapter<CalendarDataAdapter.myViewHolder>() {
+class ListFragRecylcerAdapter(private val context: MutableList<ListData>) : RecyclerView.Adapter<ListFragRecylcerAdapter.myViewHolder>() {
 
-    var datas = mutableListOf<CalendarData>()
+    var datas = mutableListOf<ListData>()
     var mPosition = 0
 
     fun getPosition():Int{
@@ -22,8 +21,8 @@ class CalendarDataAdapter(private val context: MutableList<ListData>) : Recycler
     private fun setPosition(position: Int){
         mPosition = position
     }
-    fun addItem(calendarRequest: CalendarData){
-        datas.add(calendarRequest)
+    fun addItem(listRequest: ListData){
+        datas.add(listRequest)
         notifyDataSetChanged()
     }
     fun removeItem(position: Int){
@@ -33,11 +32,11 @@ class CalendarDataAdapter(private val context: MutableList<ListData>) : Recycler
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): myViewHolder {
-        val inflatedView = LayoutInflater.from(parent.context).inflate(R.layout.list_item_calendar,parent,false)
-        return CalendarDataAdapter.myViewHolder(inflatedView)
+        val inflatedView = LayoutInflater.from(parent.context).inflate(R.layout.list_item,parent,false)
+        return myViewHolder(inflatedView)
     }
 
-    override fun onBindViewHolder(holder: CalendarDataAdapter.myViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: myViewHolder, position: Int) {
         val item = datas[position]
         holder.itemView.setOnClickListener { view ->
             setPosition(position)
@@ -62,11 +61,18 @@ class CalendarDataAdapter(private val context: MutableList<ListData>) : Recycler
 
     class myViewHolder(v : View) : RecyclerView.ViewHolder(v) {
         private val view: View = v
-        private val txPlus = view.findViewById<TextView>(R.id.item_calendar_plus_date_text)
-        private val txMinus = view.findViewById<TextView>(R.id.item_calendar_minus_date_text)
-        fun bind(item: CalendarData) {
-            txPlus.text = item.transactionType
-            txMinus.text = item.transactionType
+        private val txName = view.findViewById<TextView>(R.id.tvName)
+        private val txAmount = view.findViewById<TextView>(R.id.tvAmount)
+        private val txCategoryName = view.findViewById<TextView>(R.id.tvCategory)
+        private val txTransactionType = view.findViewById<TextView>(R.id.tvTransaction)
+        private val txCreatedAt = view.findViewById<TextView>(R.id.tvDate)
+        fun bind(item: ListData) {
+            txCreatedAt.text = item.createdAt
+            txName.text = item.name
+            txAmount.text = item.amount
+            txCategoryName.text = item.categoryName
+            txTransactionType.text = item.transactionType
+
         }
     }
 }

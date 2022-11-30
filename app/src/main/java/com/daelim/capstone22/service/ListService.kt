@@ -17,5 +17,4 @@ interface ListService {
     fun getTran(@Path("year") year: String,
                 @Path("month") month: String,
                 @QueryMap par: Map<String,String>): Call<ListDataResponse>
-
 }

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <comain includeSubdomains="true">http://127.0.0.1:8080</comain>
+    </domain-config>
+</network-security-config>

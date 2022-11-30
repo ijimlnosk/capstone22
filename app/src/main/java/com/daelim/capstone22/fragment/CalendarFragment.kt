@@ -1,110 +1,74 @@
 package com.daelim.capstone22.fragment
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.daelim.capstone22.*
 import com.daelim.capstone22.`object`.ApiObject
-import com.daelim.capstone22.calendar.CalendarAdapter
-import com.daelim.capstone22.calendar.CalendarDataAdapter
-import com.daelim.capstone22.data.CalendarDataResponse
+import com.daelim.capstone22.adapter.CalendarAdapterTest
+import com.daelim.capstone22.adapter.CalendarDataAdapter
 import com.daelim.capstone22.data.CalendarData
-import kotlinx.android.synthetic.main.activity_main.*
+import com.daelim.capstone22.data.CalendarDataResponse
 import kotlinx.android.synthetic.main.fragment_calendar.*
-import kotlinx.android.synthetic.main.fragment_calendar.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.text.SimpleDateFormat
+import java.text.DecimalFormat
 import java.time.LocalDate
 import java.util.*
+import kotlin.collections.ArrayList
 
-
-class CalendarFragment(index: Int) : Fragment(R.layout.fragment_calendar) {
-    private val TAG = javaClass.simpleName
-    lateinit var mContext: Context
-    lateinit var mActivity: MainActivity
-
-    var pageIndex = index
-    lateinit var currentDate: Date
-
-    lateinit var calender_year_month_text: TextView
-    lateinit var calender_layout: LinearLayout
-    lateinit var calender_view: RecyclerView
-    lateinit var calendarAdapter: CalendarAdapter
-    lateinit var calendarDataAdapter: CalendarDataAdapter
-
+//(index:Int)
+class CalendarFragment() : Fragment(R.layout.fragment_calendar){
+    private lateinit var calendarDataAdapter: CalendarDataAdapter
     private val datas = mutableListOf<CalendarData>()
     var calendarIn : CalendarDataResponse? = null
-
-    companion object {
-        var instance: CalendarFragment? = null
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if(context is MainActivity){
-            mContext = context
-            mActivity = activity as MainActivity
-        }
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        instance = this
-    }
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_calendar, container, false)
-        initView(view)
+        val view = inflater.inflate(R.layout.fragment_calendar,container,false)
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        initCalendar()
         super.onViewCreated(view, savedInstanceState)
-        val txPlus = view?.findViewById<TextView>(R.id.item_calendar_plus_date_text)
-        val txMinus = view?.findViewById<TextView>(R.id.item_calendar_minus_date_text)
-        val txTransactionType = view?.findViewById<TextView>(R.id.tvTransaction)
+
+        val btnCalLeft = view.findViewById<Button>(R.id.btn_calLeft)
+        val btnCalRight = view.findViewById<Button>(R.id.btn_calRight)
+        val txCalPlusResult = view.findViewById<TextView>(R.id.tvCalPlusResult)
+        val txCalMinusResult = view.findViewById<TextView>(R.id.tvCalMinusResult)
+        val moneySplit = DecimalFormat("#,###")
 
         var now = LocalDate.now()
-        var nYear = now.year.toString()
-        var nMonth = now.month.value.toString()
-        var nDay = now.dayOfMonth.toString()
+        var year = now.year
+        var month = now.monthValue
 
+        datas.clear()
         ApiObject.calendarService().getTran(
-            year = nYear,
-            month = nMonth,
+            year.toString(),
+            month.toString(),
             par = mapOf(
                 "createdAt" to "",
-                "transactionType" to ""
-            )).enqueue(object : Callback<CalendarDataResponse>{
+                "transactionType" to "",
+                "amount" to ""
+            )
+        ).enqueue(object : Callback<CalendarDataResponse>{
             override fun onResponse(
                 call: Call<CalendarDataResponse>,
                 response: Response<CalendarDataResponse>
             ) {
-                calendarIn = response.body()
-                if(response.isSuccessful){
-                    Log.d("성공",calendarIn.toString())
-                    val mCale = calendarIn?.result?.map {
-                        if (it.transactionType.equals("수입")){
-                            datas.apply {
-                                add(CalendarData(it.createdAt,it.transactionType))
-                            }
-                        }
-                    }
-                }
+                var totalMonth = response.body()?.plusMinus
+                txCalPlusResult.text = "수입 :   + "+ moneySplit.format(totalMonth?.get("plus"))
+                txCalMinusResult.text = "지출 :   - "+ moneySplit.format(totalMonth?.get("minus"))
             }
 
             override fun onFailure(call: Call<CalendarDataResponse>, t: Throwable) {
@@ -113,59 +77,47 @@ class CalendarFragment(index: Int) : Fragment(R.layout.fragment_calendar) {
 
         })
 
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-    }
-
-    fun initView(view: View){
-
-        pageIndex -= (Int.MAX_VALUE/2)
-        Log.e(TAG,"CalenderIndex: $pageIndex")
-        calender_year_month_text = view.calendar_year_month_text
-        calender_layout = view.calendar_layout
-        calender_view = view.calendar_view
-        // 날짜
-        val date = Calendar.getInstance().run{
-            add(Calendar.MONTH, pageIndex)
-            time
+        setMonthView()
+        btnCalLeft?.setOnClickListener {
+            CalendarUtil.selectedDate.add(Calendar.MONTH, -1)
+            setMonthView()
         }
-        currentDate = date
-        Log.e(TAG,"$date")
-        // 포맷
-        var datetime: String = SimpleDateFormat(mContext.getString(R.string.calendar_year_month_format),
-            Locale.KOREA).format(date.time)
-        calender_year_month_text.setText(datetime)
-    }
-
-    fun initCalendar(){
-        calendarAdapter = CalendarAdapter(mContext, calendar_layout, currentDate)
-        calendar_view.adapter = calendarAdapter
-        calender_view.layoutManager = GridLayoutManager(mContext, 7, GridLayoutManager.VERTICAL, false)
-        calendar_view.setHasFixedSize(true)
-        calendarAdapter.itemClick = object :
-        CalendarAdapter.ItemClick{
-            override fun onClick(view: View, position: Int){
-                val firstDateIndex = calendarAdapter.dataList.indexOf(1)
-                val lastDateIndex = calendarAdapter.dataList.lastIndexOf(calendarAdapter.furangCalendar.currentMaxDate)
-                if(position < firstDateIndex || position > lastDateIndex){
-                    return
-                }
-                val day = calendarAdapter.dataList[position].toString()
-                val date = "${calendar_year_month_text.text}${day}일"
-                Log.d(TAG, "$date")
-                val mainTab = mActivity.mainNavi
-                //mainTab.setScrollPosition(1, 0f, true)
-                val mainViewPager = mActivity.main_pager
-                mainViewPager.currentItem = 1
-                RoutineDateLiveData.getInstance().getLiveProgress().value = date
-            }
+        btnCalRight?.setOnClickListener {
+            CalendarUtil.selectedDate.add(Calendar.MONTH, +1)
+            setMonthView()
         }
-    }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        instance = null
+    }
+    private fun setMonthView(){
+        val txHeader = view?.findViewById<TextView>(R.id.txCalHeader)
+        val moneySplit = DecimalFormat("#,###")
+        txHeader?.text = monthYearFromDate(CalendarUtil.selectedDate)
+
+        var dateList = dateInMonthArray()
+        val adapter = CalendarAdapterTest(dateList)
+        var manager : RecyclerView.LayoutManager = GridLayoutManager(context,7)
+        calendar_view.layoutManager = manager
+        calendar_view.adapter = adapter
+
+    }
+    private fun monthYearFromDate(calendar: Calendar): String{
+        var year = calendar.get(Calendar.YEAR)
+        var month = calendar.get(Calendar.MONTH) + 1
+        return "$year 년 $month 월"
+    }
+    private fun dateInMonthArray(): ArrayList<Date>{
+        var dateList = ArrayList<Date>()
+        var monthCalendar = CalendarUtil.selectedDate.clone() as Calendar
+
+        monthCalendar[Calendar.DAY_OF_MONTH] = 1
+        val firstDateOfMonth = monthCalendar[Calendar.DAY_OF_WEEK] -1
+        monthCalendar.add(Calendar.DAY_OF_MONTH, -firstDateOfMonth)
+        while (dateList.size < 42){
+            dateList.add(monthCalendar.time)
+            //1일씩 늘린다.
+            monthCalendar.add(Calendar.DAY_OF_MONTH, 1)
+        }
+
+        return dateList
     }
 }

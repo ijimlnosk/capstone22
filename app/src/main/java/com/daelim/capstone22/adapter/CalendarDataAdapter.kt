@@ -1,6 +1,5 @@
-package com.daelim.capstone22
+package com.daelim.capstone22.adapter
 
-import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -8,11 +7,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.daelim.capstone22.data.ListData
+import com.daelim.capstone22.R
+import com.daelim.capstone22.data.CalendarData
+import kotlinx.android.synthetic.main.list_item_calendar.view.*
 
-class ListFragRecylcerAdapter(private val context: MutableList<ListData>) : RecyclerView.Adapter<ListFragRecylcerAdapter.myViewHolder>() {
+class CalendarDataAdapter(private val context: MutableList<CalendarData>) : RecyclerView.Adapter<CalendarDataAdapter.myViewHolder>() {
 
-    var datas = mutableListOf<ListData>()
+    var datas = mutableListOf<CalendarData>()
     var mPosition = 0
 
     fun getPosition():Int{
@@ -21,8 +22,8 @@ class ListFragRecylcerAdapter(private val context: MutableList<ListData>) : Recy
     private fun setPosition(position: Int){
         mPosition = position
     }
-    fun addItem(listRequest: ListData){
-        datas.add(listRequest)
+    fun addItem(calendarRequest: CalendarData){
+        datas.add(calendarRequest)
         notifyDataSetChanged()
     }
     fun removeItem(position: Int){
@@ -32,11 +33,11 @@ class ListFragRecylcerAdapter(private val context: MutableList<ListData>) : Recy
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): myViewHolder {
-        val inflatedView = LayoutInflater.from(parent.context).inflate(R.layout.list_item,parent,false)
-        return ListFragRecylcerAdapter.myViewHolder(inflatedView)
+        val inflatedView = LayoutInflater.from(parent.context).inflate(R.layout.list_item_calendar,parent,false)
+        return CalendarDataAdapter.myViewHolder(inflatedView)
     }
 
-    override fun onBindViewHolder(holder: ListFragRecylcerAdapter.myViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CalendarDataAdapter.myViewHolder, position: Int) {
         val item = datas[position]
         holder.itemView.setOnClickListener { view ->
             setPosition(position)
@@ -61,17 +62,11 @@ class ListFragRecylcerAdapter(private val context: MutableList<ListData>) : Recy
 
     class myViewHolder(v : View) : RecyclerView.ViewHolder(v) {
         private val view: View = v
-        private val txName = view.findViewById<TextView>(R.id.tvName)
-        private val txAmount = view.findViewById<TextView>(R.id.tvAmount)
-        private val txCategoryName = view.findViewById<TextView>(R.id.tvCategory)
-        private val txTransactionType = view.findViewById<TextView>(R.id.tvTransaction)
-        fun bind(item: ListData) {
-
-            txName.text = item.name
-            txAmount.text = item.amount
-            txCategoryName.text = item.categoryName
-            txTransactionType.text = item.transactionType
-
+        private var itemCalendarPlusText: TextView = view.item_calendar_plus_text
+        private var itemCalendarMinusText: TextView = view.item_calendar_minus_text
+        fun bind(item: CalendarData) {
+            itemCalendarPlusText.text = item.amount
+            itemCalendarMinusText.text = item.amount
         }
     }
 }

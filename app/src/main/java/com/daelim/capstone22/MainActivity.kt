@@ -5,19 +5,16 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import com.daelim.capstone22.data.SigninResponse
+import com.daelim.capstone22.adapter.CalendarDataAdapter
+import com.daelim.capstone22.data.CalendarData
+import com.daelim.capstone22.data.CalendarDataResponse
 import com.daelim.capstone22.databinding.ActivityMainBinding
 import com.daelim.capstone22.fragment.CalendarFragment
-import com.daelim.capstone22.fragment.FirstFragment
-import com.daelim.capstone22.fragment.HomeFragment
 import com.daelim.capstone22.fragment.ListFragment
 import com.daelim.capstone22.service.ListService
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.OkHttpClient
-import org.json.JSONObject
 
 private const val TAG_List = "list_fragment"
-private const val TAG_First = "first_fragment"
+private const val TAG_Cal = "calendar_fragment"
 private const val TAG_Home = "home_fragment"
 
 class MainActivity : AppCompatActivity() {
@@ -28,17 +25,48 @@ class MainActivity : AppCompatActivity() {
 
     var listIn: ListService? = null
 
-
+    lateinit var calendarDataAdapter: CalendarDataAdapter
+    var resultIn : CalendarDataResponse? = null
+    var datas = mutableListOf<CalendarData>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
-
         // 바인딩
         binding=ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+        /*var year = LocalDate.now().year
+        Log.d("year",year.toString())
+
+        var month = LocalDate.now().monthValue
+
+        ApiObject.listService().getTran(
+            year.toString(),
+            month.toString(),
+            par = mapOf(
+                "createdAt" to "",
+                "name" to "",
+                "amount" to "",
+                "categoryName" to "",
+                "transactionType" to ""
+            )).enqueue(object : Callback<ListDataResponse> {
+            override fun onResponse(
+                call: Call<ListDataResponse>,
+                response: Response<ListDataResponse>
+            ) {
+                datas.clear()
+                var monthData = response.body()?.plusMinus
+                var txPlusResult = findViewById<TextView>(R.id.tvCalPlusResult)
+                var txMinusResult = findViewById<TextView>(R.id.tvCalMinusResult)
+                val moneySplit = DecimalFormat("#,###")
+                binding.tvCalPlusResult.text = moneySplit.format(monthData?.get("plus"))
+                binding.tvCalMinusResult.text = moneySplit.format(monthData?.get("minus"))
+            }
+            override fun onFailure(call: Call<ListDataResponse>, t: Throwable) {
+                Log.d("오류",t.message.toString())
+            }
+        })*/
 
         setNaviFragment(TAG_List,ListFragment())
 
@@ -46,7 +74,7 @@ class MainActivity : AppCompatActivity() {
         binding.mainNavi.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.BD -> setNaviFragment(TAG_List,ListFragment())
-                R.id.cale -> setNaviFragment(TAG_First,FirstFragment())
+                R.id.cale -> setNaviFragment(TAG_Cal,CalendarFragment())
             }
             true
         }
@@ -68,7 +96,7 @@ class MainActivity : AppCompatActivity() {
 
         // manager에 add되어있는 fragment들을 변수로 할당
         val listFt = manager.findFragmentByTag(TAG_List)
-        val firFt = manager.findFragmentByTag(TAG_First)
+        val firFt = manager.findFragmentByTag(TAG_Cal)
         // 모든 fragment hide
         if(listFt!=null){
             ft.hide(listFt)
@@ -82,7 +110,7 @@ class MainActivity : AppCompatActivity() {
             if(listFt!=null){
                 ft.show(listFt)
             }
-        }else if(tag == TAG_First){
+        }else if(tag == TAG_Cal){
             if (firFt!=null){
                 ft.show(firFt)
             }

@@ -60,6 +60,9 @@ dependencies {
 
     implementation 'joda-time:joda-time:2.10.6'
 
+    //Design
+    //implementation "com.android.support:design:29.0.0"
+
     //TabLayout
     //implementation 'com.android.support:design-tabs:28.0.0-alpha1'
 
